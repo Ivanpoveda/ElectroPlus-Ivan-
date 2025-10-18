@@ -58,3 +58,44 @@ class InventarioElectroPlus
             }
         }
     }
+    static void AgregarProducto()
+    {
+        Console.Write("Código: ");
+        string codigo = Console.ReadLine();
+
+        Console.Write("Nombre: ");
+        string nombre = Console.ReadLine();
+
+        decimal precio;
+        while (true)
+        {
+            Console.Write("Precio: ");
+            if (decimal.TryParse(Console.ReadLine(), out precio))
+                break;
+            Console.WriteLine("Precio inválido. Ingrese un número decimal.");
+        }
+
+        int cantidad;
+        while (true)
+        {
+            Console.Write("Cantidad: ");
+            if (int.TryParse(Console.ReadLine(), out cantidad))
+                break;
+            Console.WriteLine("Cantidad inválida. Ingrese un número entero.");
+        }
+
+        productos.Add(new Producto { Codigo = codigo, Nombre = nombre, Precio = precio, Cantidad = cantidad });
+        Console.WriteLine("Producto agregado exitosamente.");
+    }
+
+    static void ListarProductos()
+    {
+        Console.WriteLine("\n--- Lista de Productos ---");
+        foreach (var p in productos)
+        {
+            Console.WriteLine(p);
+        }
+    }
+
+    static void BuscarProductoPorCodigo()
+    {
