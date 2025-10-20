@@ -99,3 +99,28 @@ class InventarioElectroPlus
 
     static void BuscarProductoPorCodigo()
     {
+        Console.Write("Ingrese el código del producto: ");
+        string codigo = Console.ReadLine();
+
+        var encontrado = productos.Find(p => p.Codigo.Equals(codigo, StringComparison.OrdinalIgnoreCase));
+        if (encontrado != null)
+        {
+            Console.WriteLine("Producto encontrado:");
+            Console.WriteLine(encontrado);
+        }
+        else
+        {
+            Console.WriteLine("Producto no encontrado.");
+        }
+    }
+
+    static void MostrarSinStock()
+    {
+        Console.WriteLine("\n--- Productos sin stock ---");
+        foreach (var p in productos)
+        {
+            if (p.Cantidad == 0)
+                Console.WriteLine(p);
+        }
+    }
+}
